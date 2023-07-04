@@ -1,5 +1,6 @@
 import pygame
 
+# consts of colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
@@ -8,6 +9,7 @@ BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
 PINK = (255, 192, 203)
 
+# the list of colors
 colors = [WHITE, BLACK, RED, GREEN, BLUE, YELLOW, PINK]
 WIDTH = 800  # ширина игрового окна
 HEIGHT = 800 # высота игрового окна
@@ -111,7 +113,6 @@ def drawCross(coord: tuple):
         pygame.draw.aaline(screen, RED, (c[0] + 50, c[1] - 50),(c[0] - 50, c[1] + 50))
         occupiedPlace[getNumberOfPlace(coord)] = "Cross"
 
-
 def drawZero(coord: tuple):
     c = getCenterOfPlace(getNumberOfPlace(coord))
     if occupiedPlace[getNumberOfPlace(coord)] == None and stop:
@@ -128,11 +129,13 @@ def whoWins():
             d = pygame.font.Font(None, 50)
             tD = d.render("Draw!", 1, PINK)
             screen.blit(tD, (350, 600))
+                
 pygame.draw.aaline(screen, WHITE, (250, 300),(550,300))
 pygame.draw.aaline(screen, WHITE, (250, 400),(550,400))
 pygame.draw.aaline(screen, WHITE, (350, 200),(350,500))
 pygame.draw.aaline(screen, WHITE, (450, 200),(450,500))
 pygame.display.update()
+
 playing = True
 while playing:
     for event in pygame.event.get():
@@ -151,15 +154,9 @@ while playing:
                 """
                 drawZero(event.pos)
                 pygame.display.update()
-
     checkWin()
     whoWins()
     pygame.display.update()
-
     clock.tick(FPS)
 
-
 pygame.quit()
-
-
-
